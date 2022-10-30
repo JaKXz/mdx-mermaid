@@ -20,30 +20,32 @@ describe("mdxast-mermaid", () => {
 
   test("No mermaid", async () => {
     const result = await compileMdx("# Heading 1\n\nNo Mermaid diagram :(");
-    expect(result.value)
-      .toEqual(`/*@jsxRuntime automatic @jsxImportSource react*/
-import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from \"react/jsx-runtime\";
-function _createMdxContent(props) {
-  const _components = Object.assign({
-    h1: \"h1\",
-    p: \"p\"
-  }, props.components);
-  return _jsxs(_Fragment, {
-    children: [_jsx(_components.h1, {
-      children: \"Heading 1\"
-    }), \"\\n\", _jsx(_components.p, {
-      children: \"No Mermaid diagram :(\"
-    })]
-  });
-}
-function MDXContent(props = {}) {
-  const {wrapper: MDXLayout} = props.components || ({});
-  return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
-    children: _jsx(_createMdxContent, props)
-  })) : _createMdxContent(props);
-}
-export default MDXContent;
-`);
+
+    expect(result.value).toMatchInlineSnapshot(`
+      "/*@jsxRuntime automatic @jsxImportSource react*/
+      import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from \\"react/jsx-runtime\\";
+      function _createMdxContent(props) {
+        const _components = Object.assign({
+          h1: \\"h1\\",
+          p: \\"p\\"
+        }, props.components);
+        return _jsxs(_Fragment, {
+          children: [_jsx(_components.h1, {
+            children: \\"Heading 1\\"
+          }), \\"\\\\n\\", _jsx(_components.p, {
+            children: \\"No Mermaid diagram :(\\"
+          })]
+        });
+      }
+      function MDXContent(props = {}) {
+        const {wrapper: MDXLayout} = props.components || ({});
+        return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
+          children: _jsx(_createMdxContent, props)
+        })) : _createMdxContent(props);
+      }
+      export default MDXContent;
+      "
+    `);
   });
 
   test("ast", async () => {
@@ -55,30 +57,34 @@ graph TD;
     B-->D;
     C-->D;
 \`\`\``);
-    expect(result.value)
-      .toEqual(`/*@jsxRuntime automatic @jsxImportSource react*/
-import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from \"react/jsx-runtime\";
-function _createMdxContent(props) {
-  const _components = Object.assign({
-    h1: \"h1\",
-    mermaid: "mermaid"
-  }, props.components);
-  return _jsxs(_Fragment, {
-    children: [_jsx(_components.h1, {
-      children: \"Heading 1\"
-    }), "\\n", _jsx(_components.mermaid, {
-      config: "{\\"output\\":\\"ast\\"}",
-      chart: "graph TD;\\n    A-->B;\\n    A-->C;\\n    B-->D;\\n    C-->D;"
-    })]
-  });
-}
-function MDXContent(props = {}) {
-  const {wrapper: MDXLayout} = props.components || ({});
-  return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
-    children: _jsx(_createMdxContent, props)
-  })) : _createMdxContent(props);
-}
-export default MDXContent;
-`);
+
+    expect(result.value).toMatchInlineSnapshot(`
+      "/*@jsxRuntime automatic @jsxImportSource react*/
+      import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from \\"react/jsx-runtime\\";
+      function _createMdxContent(props) {
+        const _components = Object.assign({
+          h1: \\"h1\\"
+        }, props.components), {Mermaid} = _components;
+        if (!Mermaid) _missingMdxReference(\\"Mermaid\\", true);
+        return _jsxs(_Fragment, {
+          children: [_jsx(_components.h1, {
+            children: \\"Heading 1\\"
+          }), \\"\\\\n\\", _jsx(Mermaid, {
+            chart: \\"graph TD;\\\\n    A-->B;\\\\n    A-->C;\\\\n    B-->D;\\\\n    C-->D;\\"
+          })]
+        });
+      }
+      function MDXContent(props = {}) {
+        const {wrapper: MDXLayout} = props.components || ({});
+        return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
+          children: _jsx(_createMdxContent, props)
+        })) : _createMdxContent(props);
+      }
+      export default MDXContent;
+      function _missingMdxReference(id, component) {
+        throw new Error(\\"Expected \\" + (component ? \\"component\\" : \\"object\\") + \\" \`\\" + id + \\"\` to be defined: you likely forgot to import, pass, or provide it.\\");
+      }
+      "
+    `);
   });
 });
