@@ -5,22 +5,23 @@
  * license file in the root directory of this source tree.
  */
 
-import { compile } from '@mdx-js/mdx'
-import mermaid from './mdxast-mermaid'
+import { compile } from "@mdx-js/mdx";
+import mermaid from "./mdxast-mermaid";
 
-import type { Config } from './config.model'
+import type { Config } from "./config.model";
 
-describe('mdxast-mermaid', () => {
+describe("mdxast-mermaid", () => {
   function compileMdx(mdx: string, config?: Config) {
     return compile(mdx, {
-      outputFormat: 'program',
-      remarkPlugins: [[mermaid, config]]
-    })
+      outputFormat: "program",
+      remarkPlugins: [[mermaid, config]],
+    });
   }
 
-  test('No mermaid', async () => {
-    const result = await compileMdx('# Heading 1\n\nNo Mermaid diagram :(')
-    expect(result.value).toEqual(`/*@jsxRuntime automatic @jsxImportSource react*/
+  test("No mermaid", async () => {
+    const result = await compileMdx("# Heading 1\n\nNo Mermaid diagram :(");
+    expect(result.value)
+      .toEqual(`/*@jsxRuntime automatic @jsxImportSource react*/
 import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from \"react/jsx-runtime\";
 function _createMdxContent(props) {
   const _components = Object.assign({
@@ -42,10 +43,10 @@ function MDXContent(props = {}) {
   })) : _createMdxContent(props);
 }
 export default MDXContent;
-`)
-  })
+`);
+  });
 
-  test('ast', async () => {
+  test("ast", async () => {
     const result = await compileMdx(`# Heading 1\n
 \`\`\`mermaid
 graph TD;
@@ -53,8 +54,9 @@ graph TD;
     A-->C;
     B-->D;
     C-->D;
-\`\`\``, { output: 'ast' })
-    expect(result.value).toEqual(`/*@jsxRuntime automatic @jsxImportSource react*/
+\`\`\``);
+    expect(result.value)
+      .toEqual(`/*@jsxRuntime automatic @jsxImportSource react*/
 import {Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs} from \"react/jsx-runtime\";
 function _createMdxContent(props) {
   const _components = Object.assign({
@@ -77,6 +79,6 @@ function MDXContent(props = {}) {
   })) : _createMdxContent(props);
 }
 export default MDXContent;
-`)
-  })
-})
+`);
+  });
+});

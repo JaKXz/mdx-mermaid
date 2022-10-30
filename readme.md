@@ -33,20 +33,20 @@ Update `docusaurus.config.js`
 
 ```js
 async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid')
+  const mdxMermaid = await import("mdx-mermaid");
 
   return {
     presets: [
       [
-        'classic',
+        "classic",
         {
           docs: {
             remarkPlugins: [mdxMermaid.default],
-          }
-        }
-      ]
-    ]
-  }
+          },
+        },
+      ],
+    ],
+  };
 }
 
 module.exports = createConfig;
@@ -67,14 +67,16 @@ graph TD;
 Use the component in `.mdx`, `.jsx` or `.tsx` files:
 
 ```jsx
-import { Mermaid } from 'mdx-mermaid/Mermaid';
+import { Mermaid } from "mdx-mermaid/Mermaid";
 
-<Mermaid chart={`graph TD;
+<Mermaid
+  chart={`graph TD;
     A-->B;
     A-->C;
     B-->D;
     C-->D;
-`} />
+`}
+/>;
 ```
 
 There are more examples [here][examples]
@@ -86,17 +88,10 @@ There are more examples [here][examples]
 <!-- Definitions -->
 
 [license]: https://github.com/sjwall/mdx-mermaid/blob/main/license
-
 [author]: https://samuelwall.co.uk
-
 [npm]: https://www.npmjs.com/package/mdx-mermaid
-
 [mermaid]: http://mermaid-js.github.io/mermaid/
-
 [inspire]: https://github.com/facebook/docusaurus/issues/1258#issuecomment-594393744
-
 [pr]: http://makeapullrequest.com
-
 [examples]: https://sjwall.github.io/mdx-mermaid/docs/examples/
-
 [documentation]: https://sjwall.github.io/mdx-mermaid/

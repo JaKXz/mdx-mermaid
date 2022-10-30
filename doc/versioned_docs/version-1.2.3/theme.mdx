@@ -14,7 +14,8 @@ remarkPlugins: [[require('mdx-mermaid'), {
 
 Toggle the theme in the top right corner to change this diagrams theme between `neutral` and `forest`:
 
-<Mermaid chart={`sequenceDiagram
+<Mermaid
+  chart={`sequenceDiagram
     participant Alice
     participant Bob
     Alice->>John: Hello John, how are you?
@@ -24,4 +25,6 @@ Toggle the theme in the top right corner to change this diagrams theme between `
     Note right of John: Rational thoughts <br/>prevail!
     John-->>Alice: Great!
     John->>Bob: How about you?
-    Bob-->>John: Jolly good!`} config={ { theme: { light: 'neutral', dark: 'forest' } } } />
+    Bob-->>John: Jolly good!`}
+  config={{ theme: { light: "neutral", dark: "forest" } }}
+/>

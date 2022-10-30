@@ -5,11 +5,11 @@
  * license file in the root directory of this source tree.
  */
 
-import React, { useEffect, useState, ReactElement, useMemo } from 'react'
-import mermaid from 'mermaid'
+import React, { useEffect, useState, ReactElement, useMemo } from "react";
+import mermaid from "mermaid";
 
-import type { Config } from './config.model'
-import { getTheme } from './theme.helper'
+import type { Config } from "./config.model";
+import { getTheme } from "./theme.helper";
 
 /**
  * Properties for Mermaid component.
@@ -18,13 +18,13 @@ export type MermaidProps = {
   /**
    * Mermaid diagram.
    */
-  chart: string
+  chart: string;
 
   /**
    * Config to initialize mermaid with.
    */
-  config?: Config | string
-}
+  config?: Config | string;
+};
 
 /**
  * Component to display Mermaid diagrams.
@@ -33,60 +33,79 @@ export type MermaidProps = {
  * @param param1 Config.
  * @returns The component.
  */
-export const Mermaid = ({ chart, config: configSrc }: MermaidProps): ReactElement<MermaidProps> => {
+export const Mermaid = ({
+  chart,
+  config: configSrc,
+}: MermaidProps): ReactElement<MermaidProps> => {
   // Mermaid doesn't support server-side rendering
   /* istanbul ignore next */
-  if (typeof window === 'undefined') {
-    return <div className="mermaid" data-mermaid-src={chart}>{chart}</div>
+  if (typeof window === "undefined") {
+    return (
+      <div className="mermaid" data-mermaid-src={chart}>
+        {chart}
+      </div>
+    );
   }
 
-  const config: Config = useMemo(() => typeof configSrc === 'string' ? JSON.parse(configSrc) : configSrc, [configSrc])
+  const config: Config = useMemo(
+    () => (typeof configSrc === "string" ? JSON.parse(configSrc) : configSrc),
+    [configSrc]
+  );
 
-  const html: HTMLHtmlElement = document.querySelector('html')!
+  const html: HTMLHtmlElement = document.querySelector("html")!;
 
-  const [rerender, setRerender] = useState<boolean>(false)
+  const [rerender, setRerender] = useState<boolean>(false);
 
-  const theme = useMemo(() => getTheme(html, config), [config, rerender])
+  const theme = useMemo(() => getTheme(html, config), [config, rerender]);
 
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
-        if (mutation.type !== 'attributes' || mutation.attributeName !== 'data-theme') {
-          continue
+        if (
+          mutation.type !== "attributes" ||
+          mutation.attributeName !== "data-theme"
+        ) {
+          continue;
         }
-        setRerender((cur) => !cur)
-        break
+        setRerender((cur) => !cur);
+        break;
       }
-    })
+    });
 
-    observer.observe(html, { attributes: true })
+    observer.observe(html, { attributes: true });
     return () => {
       try {
-        observer.disconnect()
+        observer.disconnect();
       } catch {
         // Do nothing
       }
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     if (config) {
       if (config.mermaid) {
-        mermaid.initialize({ startOnLoad: true, ...config.mermaid, theme })
+        mermaid.initialize({ startOnLoad: true, ...config.mermaid, theme });
       } else {
-        mermaid.initialize({ startOnLoad: true, theme })
+        mermaid.initialize({ startOnLoad: true, theme });
       }
-      document.querySelectorAll('div.mermaid[data-processed="true"]').forEach((v) => {
-        v.removeAttribute('data-processed')
-        v.innerHTML = v.getAttribute('data-mermaid-src') as string
-      })
-      mermaid.contentLoaded()
+      document
+        .querySelectorAll('div.mermaid[data-processed="true"]')
+        .forEach((v) => {
+          v.removeAttribute("data-processed");
+          v.innerHTML = v.getAttribute("data-mermaid-src") as string;
+        });
+      mermaid.contentLoaded();
     }
-  }, [config, theme])
+  }, [config, theme]);
 
   useEffect(() => {
-    setTimeout(mermaid.contentLoaded, 0)
-  }, [chart])
+    setTimeout(mermaid.contentLoaded, 0);
+  }, [chart]);
 
-  return <div className="mermaid" data-mermaid-src={chart}>{chart}</div>
-}
+  return (
+    <div className="mermaid" data-mermaid-src={chart}>
+      {chart}
+    </div>
+  );
+};

@@ -1,6 +1,9 @@
 {
-  "name": "mdx-mermaid",
-  "version": "2.0.0-rc3",
+  "name": "@jakxz/mdx-mermaid",
+  "version": "2.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Display mermaid diagrams in mdx files.",
   "types": "index.d.ts",
   "main": "lib/mdxast-mermaid.js",
@@ -18,6 +21,7 @@
       "import": "./lib/Mermaid.mjs"
     }
   },
+  "files": ["lib", "index.d.ts"],
   "author": "Sam Wall (oss@samuelwall.co.uk)",
   "license": "MIT",
   "type": "module",
@@ -41,16 +45,9 @@
     "jsx"
   ],
   "peerDependencies": {
-    "estree-util-to-js": "^1.1.0",
-    "estree-util-visit": "^1.2.0",
-    "hast-util-to-estree": "^2.1.0",
-    "mdast-util-from-markdown": "^1.2.0",
-    "mdast-util-mdx": "^2.0.0",
     "mermaid": ">=8.11.0",
-    "micromark-extension-mdxjs": "^1.0.0",
-    "puppeteer": "^16.1.1",
     "react": "^16.8.4 || ^17.0.0 || ^18.0.0",
-    "unist-util-visit": "^4.1.0"
+    "unist-util-visit": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
@@ -75,12 +72,12 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.30.1",
-    "hast-util-from-html": "^1.0.0",
-    "hast-util-to-mdast": "^8.3.1",
+    "husky": "^8.0.1",
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
     "mermaid": "^9.1.5",
-    "puppeteer": "^16.1.1",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.0",
     "rimraf": "^3.0.2",

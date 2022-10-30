@@ -1,13 +1,13 @@
 {
-    "recommendations": [
-        "eamodio.gitlens",
-        "dbaeumer.vscode-eslint",
-        "editorconfig.editorconfig",
-        "ms-azuretools.vscode-docker",
-        "davidanson.vscode-markdownlint",
-        "streetsidesoftware.code-spell-checker",
-        "silvenon.mdx",
-        "redhat.vscode-yaml",
-        "orta.vscode-jest"
-    ]
+  "recommendations": [
+    "eamodio.gitlens",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "ms-azuretools.vscode-docker",
+    "davidanson.vscode-markdownlint",
+    "streetsidesoftware.code-spell-checker",
+    "silvenon.mdx",
+    "redhat.vscode-yaml",
+    "orta.vscode-jest"
+  ]
 }

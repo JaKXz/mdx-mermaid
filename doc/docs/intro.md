@@ -40,20 +40,20 @@ Import the module and pass it to `remarkPlugins`:
 
 ```js title=docusaurus.config.js
 async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid')
+  const mdxMermaid = await import("mdx-mermaid");
 
   return {
     presets: [
       [
-        'classic',
+        "classic",
         {
           docs: {
             remarkPlugins: [mdxMermaid.default],
-          }
-        }
-      ]
-    ]
-  }
+          },
+        },
+      ],
+    ],
+  };
 }
 
 module.exports = createConfig;

@@ -1,110 +1,109 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 async function createConfig() {
-  const mdxMermaid = await import('mdx-mermaid')
+  const mdxMermaid = await import("mdx-mermaid");
 
   /** @type {import('@docusaurus/types').Config} */
   return {
-    title: 'mdx-mermaid',
-    tagline: 'Plug and play Mermaid in MDX',
-    url: 'https://sjwall.github.io',
-    baseUrl: '/mdx-mermaid/',
-    onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/favicon.ico',
+    title: "mdx-mermaid",
+    tagline: "Plug and play Mermaid in MDX",
+    url: "https://sjwall.github.io",
+    baseUrl: "/mdx-mermaid/",
+    onBrokenLinks: "throw",
+    onBrokenMarkdownLinks: "warn",
+    favicon: "img/favicon.ico",
     trailingSlash: true,
-    organizationName: 'sjwall', // Usually your GitHub org/user name.
-    projectName: 'mdx-mermaid', // Usually your repo name.
+    organizationName: "sjwall", // Usually your GitHub org/user name.
+    projectName: "mdx-mermaid", // Usually your repo name.
 
-  presets: [
-    [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          remarkPlugins: [mdxMermaid.default],
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/sjwall/mdx-mermaid/edit/main/doc',
-          versions: {
-            current: {
-              label: '2.0.0-rc3 🚧',
-            },
-            '1.3.0': {
-              label: '>= 1.3.0',
-            },
-            '1.2.3': {
-              label: '<= 1.2.3',
+    presets: [
+      [
+        "classic",
+        /** @type {import('@docusaurus/preset-classic').Options} */
+        ({
+          docs: {
+            remarkPlugins: [mdxMermaid.default],
+            sidebarPath: require.resolve("./sidebars.js"),
+            // Please change this to your repo.
+            editUrl: "https://github.com/sjwall/mdx-mermaid/edit/main/doc",
+            versions: {
+              current: {
+                label: "2.0.0-rc3 🚧",
+              },
+              "1.3.0": {
+                label: ">= 1.3.0",
+              },
+              "1.2.3": {
+                label: "<= 1.2.3",
+              },
             },
           },
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
+          theme: {
+            customCss: require.resolve("./src/css/custom.css"),
+          },
+        }),
+      ],
     ],
-  ],
 
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
         navbar: {
-          title: 'mdx-mermaid',
+          title: "mdx-mermaid",
           logo: {
-            alt: 'mdx-mermaid',
-            src: 'img/logo.svg',
+            alt: "mdx-mermaid",
+            src: "img/logo.svg",
           },
           items: [
             {
-              type: 'doc',
-              docId: 'intro',
-              position: 'left',
-              label: 'Tutorial',
+              type: "doc",
+              docId: "intro",
+              position: "left",
+              label: "Tutorial",
             },
             {
-              type: 'docsVersionDropdown',
-              position: 'right',
+              type: "docsVersionDropdown",
+              position: "right",
               dropdownActiveClassDisabled: true,
             },
             {
-              href: 'https://github.com/sjwall/mdx-mermaid',
-              label: 'GitHub',
-              position: 'right',
+              href: "https://github.com/sjwall/mdx-mermaid",
+              label: "GitHub",
+              position: "right",
             },
           ],
         },
         footer: {
-          style: 'dark',
+          style: "dark",
           links: [
             {
-              title: 'Docs',
+              title: "Docs",
               items: [
                 {
-                  label: 'Tutorial',
-                  to: '/docs/intro',
+                  label: "Tutorial",
+                  to: "/docs/intro",
                 },
               ],
             },
             {
-              title: 'Community',
+              title: "Community",
               items: [
                 {
-                  label: 'Stack Overflow',
-                  href: 'https://stackoverflow.com/questions/tagged/mdx-mermaid',
+                  label: "Stack Overflow",
+                  href: "https://stackoverflow.com/questions/tagged/mdx-mermaid",
                 },
               ],
             },
             {
-              title: 'More',
+              title: "More",
               items: [
                 {
-                  label: 'GitHub',
-                  href: 'https://github.com/sjwall/mdx-mermaid',
+                  label: "GitHub",
+                  href: "https://github.com/sjwall/mdx-mermaid",
                 },
               ],
             },

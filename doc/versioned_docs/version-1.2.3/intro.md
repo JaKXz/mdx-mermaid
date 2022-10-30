@@ -27,7 +27,7 @@ pnpm add mdx-mermaid mermaid
 Add
 
 ```js
-require('mdx-mermaid')
+require("mdx-mermaid");
 ```
 
 to `remarkPlugins`
