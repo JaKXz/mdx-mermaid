@@ -34,7 +34,7 @@
     "url": "https://github.com/sjwall/mdx-mermaid.git"
   },
   "homepage": "https://sjwall.github.io/mdx-mermaid",
-  "bugs": "https://github.com/sjwall/mdx-mermaid/issues",
+  "bugs": "https://github.com/jakxz/mdx-mermaid/issues",
   "keywords": [
     "mdx",
     "markdown",
@@ -93,6 +93,7 @@
     "David Prothero (https://github.com/dprothero)",
     "mzvast (https://github.com/mzvast)",
     "Ramy (https://github.com/ramy.loveridge@appshack.se)",
-    "Taj Pereira (https://github.com/taj-p)"
+    "Taj Pereira (https://github.com/taj-p)",
+    "Jason Kurian (https://github.com/JaKXz)"
   ]
 }
