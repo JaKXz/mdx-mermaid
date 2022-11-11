@@ -1,4 +1,4 @@
-# mdx-mermaid
+# `@jakxz/mdx-mermaid`
 
 Plug and play Mermaid in MDX
 
@@ -40,7 +40,35 @@ module.exports = {
 };
 ```
 
-then, use code blocks in `.md` or `.mdx` files:
+You'll need to make the `Mermaid` component available to your theme.
+At time of writing I am just using this patch for the docusaurus-theme-mdx-v2 package:
+
+```diff
+diff --git a/node_modules/docusaurus-theme-mdx-v2/theme/MDXContent/index.js b/node_modules/docusaurus-theme-mdx-v2/theme/MDXContent/index.js
+index ec7b4c8..ab4aa5e 100644
+--- a/node_modules/docusaurus-theme-mdx-v2/theme/MDXContent/index.js
++++ b/node_modules/docusaurus-theme-mdx-v2/theme/MDXContent/index.js
+@@ -1,7 +1,12 @@
+-import React from "react";
+-import { MDXProvider } from "@mdx-js/react";
+-import MDXComponents from "@theme/MDXComponents";
++import React from 'react';
++import {MDXProvider} from '@mdx-js/react';
++import MDXComponents from '@theme/MDXComponents';
++import {Mermaid} from '@jakxz/mdx-mermaid/Mermaid';
+ 
+-export default function MDXContent({ children }) {
+-  return <MDXProvider components={MDXComponents}>{children}</MDXProvider>;
++export default function MDXContent({children}) {
++  return (
++    <MDXProvider components={{...MDXComponents, Mermaid}}>
++      {children}
++    </MDXProvider>
++  );
+ }
+```
+
+Then, use code blocks in `.md` or `.mdx` files:
 
 ````md
 ```mermaid
@@ -52,7 +80,7 @@ graph TD;
 ```
 ````
 
-OR, use the component in `.mdx`, `.jsx` or `.tsx` files:
+OR, just use the component in `.mdx`, `.jsx` or `.tsx` files:
 
 ```jsx
 import { Mermaid } from "@jakxz/mdx-mermaid/Mermaid";
