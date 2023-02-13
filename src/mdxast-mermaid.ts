@@ -12,7 +12,7 @@ type CodeMermaid = Literal<string> & {
   type: "code";
   lang: "mermaid";
 };
-type Instance = [Literal, number, Parent<Node<Data> | Literal, Data>];
+type Instance = [CodeMermaid, number, Parent<Node<Data> | Literal, Data>];
 type OutputResult = (Node<Data> | Literal<unknown, Data>)[];
 
 /**
@@ -33,15 +33,18 @@ export default function plugin(config?: Config) {
       ast,
       { type: "code", lang: "mermaid" },
       (node: CodeMermaid, index, parent) => {
-        instances.push([node, index!, parent as Parent<Node<Data>, Data>]);
+        instances.push([node, index, parent]);
       }
     );
 
     // Replace each Mermaid code block with the Mermaid component
     for (let i = 0; i < instances.length; i++) {
       const [node, index, parent] = instances[i];
-      const passConfig = i == 0 ? config : undefined;
-      const result = createMermaidNode(node as any, "Mermaid", passConfig);
+      const result = createMermaidNode(
+        node,
+        "Mermaid",
+        i === 0 ? config : undefined
+      );
       Array.prototype.splice.apply(parent.children, [index, 1, ...result]);
     }
     return ast;
